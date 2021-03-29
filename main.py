@@ -74,6 +74,7 @@ if choise == 1:
     con.close()
 elif choise == 2:
     # elemzés
+    fig = plt.figure()
     cur.execute('SELECT R, G, B, time FROM data')
     data = cur.fetchall()    
     R = np.array([], dtype=np.int64)
@@ -84,7 +85,7 @@ elif choise == 2:
     median = np.array([])
     avg = np.array([])
     flash = np.array([])
-    for i in range(len(data)):
+    for i in range(len(data)-1):
         R = np.append(R, data[i][2], axis=None)
         G = np.append(G, data[i][1], axis=None)
         B = np.append(B, data[i][0], axis=None)
@@ -94,19 +95,44 @@ elif choise == 2:
         if(i > 1):
             actual = np.average([data[i][0],data[i][1],data[i][2]])
             before = np.average([data[i-1][0],data[i-1][1],data[i-1][2]])
-            if np.absolute(actual-before) > 10:
-                flash = np.append(flash, actual, axis=None)
-                time2 = np.append(time2, data[i][3], axis=None)
+            after = np.average([data[i+1][0],data[i+1][1],data[i+1][2]])
+            if np.absolute(actual-before) > 5:
+                if np.absolute(after-actual) < 5:
+                    flash = np.append(flash, actual, axis=None)
+                    time2 = np.append(time2, data[i][3], axis=None)
 
     #plt.plot(time, R, "r")
     #plt.plot(time, G, "g")
     #plt.plot(time, B, "b")
-    #plt.plot(time, median, "black")
-    plt.plot(time, avg, "yellow")
-    print(len(flash))
-    plt.plot(time2, flash, linestyle='None', marker='o')    
-    plt.show()
+    #plt.plot(time, median, "yellow")
+    fig.suptitle(str(len(time2)/len(time)*100)+" % a kiugró érték", fontsize=20)
+    plt.plot(time, avg, "black")
+    plt.plot(time2, flash, "red", linestyle='None', marker='o')    
+    plt.show()   
 elif choise == 3:
     cur.execute('DELETE FROM data')
     con.commit()
     con.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
