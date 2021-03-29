@@ -7,8 +7,9 @@ from time import sleep
 from random import random
 from mss import mss
 import cv2
-import numpy
+import numpy as np
 import mss
+import matplotlib.pyplot as plt
 
 print("Csatlakozás adatbázishoz")
 con = sqlite3.connect('database.db')
@@ -20,7 +21,7 @@ print("2. Eddigi adatok elemzése")
 print("3. Eddigi adatok törlése")
 choise = int(input())
 
-if choise == 1:
+if choise == 1:    
     #print('Add meg a COM portot! (Pl.: COM6)')
     #com = input().upper()
     #print('Melyik monitor legyen vetítve? (Default: 1)')
@@ -45,7 +46,13 @@ if choise == 1:
     con.close()
 elif choise == 2:
     # elemzés
-    print('elemzés')
+    data = cur.execute('SELECT * FROM data')
+    matrix = np.array(data)
+    print(matrix)
+    
+    #plt.figure()   
+    #plt.plot(arr)    
+    #plt.show(block=False)
 elif choise == 3:
     cur.execute('DELETE FROM data')
     con.commit()
