@@ -48,9 +48,9 @@ if choise == 1:
             R = str(int(avg_color[0]))
             G = str(int(avg_color[1]))
             B = str(int(avg_color[2]))
-            print(R, G, B, int(time.time()*1000.0))
+            #print(R, G, B, int(time.time()*1000.0))
             if led == "y":
-                dser.write(bytes(str(int(avg_color[0]))+"-"+str(int(avg_color[1]))+"-"+str(int(avg_color[2]))+"$", 'utf-8'))
+                ser.write(bytes(str(int(avg_color[0]))+"-"+str(int(avg_color[1]))+"-"+str(int(avg_color[2]))+"$", 'utf-8'))
             cur.execute('INSERT INTO data (R, G, B, time) VALUES ('+R+', '+G+', '+B+', '+str(int(time.time()*1000.0))+')')        
             con.commit()
 
@@ -105,10 +105,10 @@ elif choise == 2:
     #plt.plot(time, G, "g")
     #plt.plot(time, B, "b")
     #plt.plot(time, median, "yellow")
-    fig.suptitle(str(len(time2)/len(time)*100)+" % a kiugró érték", fontsize=20)
+    fig.suptitle(str(round(len(time2)/len(time)*100, 2))+" % a kiugró érték", fontsize=20)
     plt.plot(time, avg, "black")
     plt.plot(time2, flash, "red", linestyle='None', marker='o')    
-    plt.show()   
+    plt.show()    
 elif choise == 3:
     cur.execute('DELETE FROM data')
     con.commit()
