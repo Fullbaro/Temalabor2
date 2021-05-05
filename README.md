@@ -8,3 +8,5 @@ Annak érdekében, hogy a már az újonnan szerzett adatkezeléses tudásomat is
 Amiért ez az ötlet megszületett az az volt, hogy egy ismerősömnek meséltem egy filmről, amit láttam, és ez neki megtetszett, de ő nem nézhette meg mivel már volt ilyentől epilepsziás rohama. Amennyiben én legközelebb filmet nézek, elindíthatom ezt a programot és a későbbiekben ki tudom nyerni az adatokból, hogy mennyire is villódzanak a képek, jelent-e bárimilyen kockázatot az erre érzékeny embereknek. 
 
 Keresgélésem során rábukkantam egy ötletre, miszerint ezeket a színeket valós időben felhasználhatom arra is, hogy egy LED szalagra küldöm őket, így kiterjesztve egy egész szobára a képernyő hangulatát. (Ehhez meg is rendeltem egy arduinot, de tekintettel a szállítási időre, ezt nem biztos, hogy meg tudom valósítani.)
+
+Bemutató videó: https://web.microsoftstream.com/video/c6b7a164-a431-4500-996c-5545c1f12919
